@@ -1,0 +1,34 @@
+{
+    "Projects": [
+	{
+	    "WBS": "BASF", "Description": "Projeto BASF EC (que nunca acaba)"
+	},
+	{
+	    "WBS": "VIBRA", "Description": "Projeto Vibra Foods"
+	}
+    ],
+    "Submissions": [
+        {
+	    "User": "",
+	    "WBS": "BASF",
+            "day1": 0,
+            "day2": 0,
+            "day3": 0,
+            "day4": 0,
+            "day5": 0,
+            "day6": 0,
+            "day7": 0,
+            "day8": 0,
+            "day9": 0,
+            "day10": 0,
+            "day11": 0,
+            "day12": 0,
+            "day13": 0,
+            "day14": 0,
+            "day15": 0,
+            "HoursWorked": [],
+	    "Overtime": "false",
+	    "OvertimeAmount": "0.0"
+        }
+    ]
+}

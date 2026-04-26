@@ -1,0 +1,95 @@
+<mvc:View
+  controllerName="ui5.first.controller.TablePanel"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+
+<Table id="idTimesTable" items="{/Submissions}">
+  <headerToolbar>
+    <OverflowToolbar id="otbSubheader">
+      <Title text="Myte" level="H2" />
+      <ToolbarSpacer />
+      <Button id="addButton" text="{i18n>addButton}" type="Transparent"
+	press=".onAdd" />
+      <Button id="editButton" text="{i18n>editButton}" type="Transparent"
+	press=".onEdit" />
+      <Button id="saveButton" text="{i18n>saveButton}" type="Transparent"
+	press=".onSave" visible="false" />
+      <Button id="cancelButton" text="{i18n>cancelButton}" type="Transparent"
+	press=".onCancel" visible="false" />
+    </OverflowToolbar>
+  </headerToolbar>
+  <columns>
+    <Column>
+      <Text text="WBS" />
+    </Column>
+    <Column>
+      <Text text="Dia 1" />
+    </Column>
+    <Column>
+      <Text text="Dia 2" />
+    </Column>
+    <Column>
+      <Text text="Dia 3" />
+    </Column>
+    <Column>
+      <Text text="Dia 4" />
+    </Column>
+    <Column>
+      <Text text="Dia 5" />
+    </Column>
+    <Column>
+      <Text text="Dia 6" />
+    </Column>
+    <Column>
+      <Text text="Dia 7" />
+    </Column>
+    <Column>
+      <Text text="Dia 8" />
+    </Column>
+    <Column>
+      <Text text="Dia 9" />
+    </Column>
+    <Column>
+      <Text text="Dia 10" />
+    </Column>
+    <Column>
+      <Text text="Dia 11" />
+    </Column>
+    <Column>
+      <Text text="Dia 12" />
+    </Column>
+    <Column>
+      <Text text="Dia 13" />
+    </Column>
+    <Column>
+      <Text text="Dia 14" />
+    </Column>
+    <Column>
+      <Text text="Dia 15" />
+    </Column>
+  </columns>
+  <items>
+    <ColumnListItem vAlign="Middle">
+      <cells>
+	<ObjectIdentifier title="{WBS}" />
+	<Text text="{day1}"/>
+	<Text text="{day2}"/>
+	<Text text="{day3}"/>
+	<Text text="{day4}"/>
+	<Text text="{day5}"/>
+	<Text text="{day6}"/>
+	<Text text="{day7}"/>
+	<Text text="{day8}"/>
+	<Text text="{day9}"/>
+	<Text text="{day10}"/>
+	<Text text="{day11}"/>
+	<Text text="{day12}"/>
+	<Text text="{day13}"/>
+	<Text text="{day14}"/>
+	<Text text="{day15}"/>
+      </cells>
+    </ColumnListItem>
+  </items>
+</Table>
+
+</mvc:View>

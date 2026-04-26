@@ -7,5 +7,23 @@
     "applicationVersion": {
       "version": "1.0.0"
     }
+  },
+  "sap.ui5": {
+    "models": {
+      "i18n": {
+	"type": "sap.ui.model.resource.ResourceModel",
+	"settings": {
+	  "bundleName": "ui5.first.i18n.i18n",
+	  "supportedLocales": [
+	    ""
+	  ],
+	  "fallbackLocale": ""
+	}
+      },
+      "times": {
+	"type": "sap.ui.model.json.JSONModel",
+	"uri": "model/Times.json"
+      }
+    }
   }
 }
