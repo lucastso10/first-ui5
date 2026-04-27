@@ -83,7 +83,7 @@ export default class TablePanel extends Controller {
     
     var sWBS = oComboBox.getSelectedKey();
     if (!sWBS) {
-	var sWBS = oComboBox.getValue();
+      var sWBS = oComboBox.getValue();
 
       if (!sWBS) {
           MessageToast.show("Please enter a WBS code.");
@@ -123,4 +123,29 @@ export default class TablePanel extends Controller {
     (this.byId("idAddDialog") as Dialog)?.close();
   }
 
+  async onSubmitFinal(): Promise<void> {
+    var oModel = this.getView().getModel();
+    var aSubmissions = oModel.getProperty("/Submissions");
+
+    var iTotalHours = 0;
+    console.log(aSubmissions);
+    aSubmissions.forEach((entry) => {
+        for (var i = 1; i <= 15; i++) {
+            iTotalHours += Number(entry["day" + i]) || 0;
+        }
+    });
+
+    this.dialog ??= await this.loadFragment({
+      name: "ui5.first.view.Submit"
+    }) as Dialog;
+    this.dialog.open(); 
+
+    this.byId("totalHoursTitle").setText(iTotalHours + "h/88h");
+   
+    this.byId("idOTSubmit").setVisible(true);
+    this.byId("totalHoursTitleOT").setVisible(true);
+    this.byId("totalHoursTitleOT").setText( (iTotalHours - 88) + "h OT");
+
+  }
+  
 }

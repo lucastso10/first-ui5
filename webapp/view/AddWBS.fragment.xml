@@ -1,0 +1,28 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <Dialog
+    id="idAddDialog"
+    title="Add a new wbs">
+    <content>
+      <VBox class="sapUiSmallMargin">
+        <Label text="WBS Code" required="true"/>
+        <ComboBox id="wbsComboBox"
+          width="100%"
+          placeholder="Select or type a WBS code"
+          items="{/Projects}">
+          <core:Item key="{WBS}" text="{WBS} - {Description}"/>
+        </ComboBox>
+      </VBox>
+    </content>
+    <buttons>
+      <Button
+	text="Cancel"
+	press=".onCancelDialog"/>
+      <Button
+	text="Submit"
+	press=".onSubmitDialog"
+	type="Emphasized"/>
+    </buttons>
+  </Dialog>
+</core:FragmentDefinition>

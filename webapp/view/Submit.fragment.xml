@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <Dialog
+    id="idSubmitDialog"
+    title="Submit timesheet?">
+    <content>
+      <VBox class="sapUiMediumMargin" alignItems="Center">
+        <Title text="Total Hours Worked" level="H3"/>
+        <Title id="totalHoursTitle" text="0h" level="H1" class="sapUiSmallMarginTop"/>
+
+        <Title id="idOTSubmit" text="Total OT" level="H3" visible="false"/>
+        <Title id="totalHoursTitleOT" text="0h" level="H1" class="sapUiSmallMarginTop" visible="false"/>
+        <Text text="Are you sure you want to submit these hours?" class="sapUiSmallMarginTop"/>
+      </VBox>
+    </content>
+    <buttons>
+      <Button
+	text="Cancel"
+	press=".onCancelDialogSubmit"/>
+      <Button
+	text="Submit"
+	press=".onSubmitDialogSubmit"
+	type="Emphasized"/>
+    </buttons>
+  </Dialog>
+</core:FragmentDefinition>

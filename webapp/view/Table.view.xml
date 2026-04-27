@@ -90,4 +90,11 @@
   </items>
 </Table>
 
+<OverflowToolbar>
+  <ToolbarSpacer />
+  <Button
+    text="Submit"
+    press=".onSubmitFinal"
+    type="Emphasized"/>
+</OverflowToolbar>
 </mvc:View>

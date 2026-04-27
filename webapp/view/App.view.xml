@@ -6,9 +6,9 @@
   <Shell>
     <App> 
       <pages>
-        <Page title="title">
+        <Page title="Myte clone">
           <content>
-            <Panel headerText="headerText">
+            <Panel>
 	      <mvc:XMLView viewName="ui5.first.view.Table"/>
             </Panel>
           </content>
