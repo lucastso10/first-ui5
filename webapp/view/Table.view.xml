@@ -14,8 +14,6 @@
 	press=".onEdit" />
       <Button id="saveButton" text="{i18n>saveButton}" type="Transparent"
 	press=".onSave" visible="false" />
-      <Button id="cancelButton" text="{i18n>cancelButton}" type="Transparent"
-	press=".onCancel" visible="false" />
     </OverflowToolbar>
   </headerToolbar>
   <columns>
@@ -69,24 +67,24 @@
     </Column>
   </columns>
   <items>
-    <ColumnListItem vAlign="Middle">
+    <ColumnListItem id="idTimesTableColumns" vAlign="Middle">
       <cells>
 	<ObjectIdentifier title="{WBS}" />
-	<Text text="{day1}"/>
-	<Text text="{day2}"/>
-	<Text text="{day3}"/>
-	<Text text="{day4}"/>
-	<Text text="{day5}"/>
-	<Text text="{day6}"/>
-	<Text text="{day7}"/>
-	<Text text="{day8}"/>
-	<Text text="{day9}"/>
-	<Text text="{day10}"/>
-	<Text text="{day11}"/>
-	<Text text="{day12}"/>
-	<Text text="{day13}"/>
-	<Text text="{day14}"/>
-	<Text text="{day15}"/>
+	<ObjectNumber number="{day1}" state="{= ${day1} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day2}" state="{= ${day2} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day3}" state="{= ${day3} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day4}" state="{= ${day4} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day5}" state="{= ${day5} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day6}" state="{= ${day6} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day7}" state="{= ${day7} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day8}" state="{= ${day8} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day9}" state="{= ${day9} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day10}" state="{= ${day10} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day11}" state="{= ${day11} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day12}" state="{= ${day12} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day13}" state="{= ${day13} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day14}" state="{= ${day14} > 8 ? 'Error' : 'None'}"/>
+	<ObjectNumber number="{day15}" state="{= ${day15} > 8 ? 'Error' : 'None'}"/>
       </cells>
     </ColumnListItem>
   </items>

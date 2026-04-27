@@ -4,6 +4,9 @@
 	    "WBS": "BASF", "Description": "Projeto BASF EC (que nunca acaba)"
 	},
 	{
+	    "WBS": "LDC", "Description": "Projeto LDC Reforma"
+	},
+	{
 	    "WBS": "VIBRA", "Description": "Projeto Vibra Foods"
 	}
     ],
