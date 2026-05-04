@@ -17,10 +17,10 @@
     <buttons>
       <Button
 	text="Cancel"
-	press=".onCancelDialogSubmit"/>
+	press=".onCancelSubmitDialog"/>
       <Button
 	text="Submit"
-	press=".onSubmitDialogSubmit"
+	press=".onSubmitSubmitDialog"
 	type="Emphasized"/>
     </buttons>
   </Dialog>

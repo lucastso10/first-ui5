@@ -93,6 +93,7 @@
 <OverflowToolbar>
   <ToolbarSpacer />
   <Button
+    id="submitButton"
     text="Submit"
     press=".onSubmitFinal"
     type="Emphasized"/>

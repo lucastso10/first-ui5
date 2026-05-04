@@ -18,10 +18,10 @@
     <buttons>
       <Button
 	text="Cancel"
-	press=".onCancelDialog"/>
+	press=".onCancelWBSDialog"/>
       <Button
 	text="Submit"
-	press=".onSubmitDialog"
+	press=".onSubmitWBSDialog"
 	type="Emphasized"/>
     </buttons>
   </Dialog>

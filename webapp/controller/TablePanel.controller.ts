@@ -20,27 +20,27 @@ export default class TablePanel extends Controller {
 
     this.oEditableTemplate = new ColumnListItem({
       cells: [
-	new ObjectIdentifier({ title: "{WBS}" }), 
-	new Input({ value: "{day1}" }), 
-	new Input({ value: "{day2}" }), 
-	new Input({ value: "{day3}" }), 
-	new Input({ value: "{day4}" }), 
-	new Input({ value: "{day5}" }), 
-	new Input({ value: "{day6}" }), 
-	new Input({ value: "{day7}" }), 
-	new Input({ value: "{day8}" }), 
-	new Input({ value: "{day9}" }), 
-	new Input({ value: "{day10}" }), 
-	new Input({ value: "{day11}" }), 
-	new Input({ value: "{day12}" }), 
-	new Input({ value: "{day13}" }), 
-	new Input({ value: "{day14}" }), 
-	new Input({ value: "{day15}" })
+        new ObjectIdentifier({ title: "{WBS}" }), 
+        new Input({ value: "{day1}" }), 
+        new Input({ value: "{day2}" }), 
+        new Input({ value: "{day3}" }), 
+        new Input({ value: "{day4}" }), 
+        new Input({ value: "{day5}" }), 
+        new Input({ value: "{day6}" }), 
+        new Input({ value: "{day7}" }), 
+        new Input({ value: "{day8}" }), 
+        new Input({ value: "{day9}" }), 
+        new Input({ value: "{day10}" }), 
+        new Input({ value: "{day11}" }), 
+        new Input({ value: "{day12}" }), 
+        new Input({ value: "{day13}" }), 
+        new Input({ value: "{day14}" }), 
+        new Input({ value: "{day15}" })
       ]
     });
   }
 
-  rebindTable(oTemplate : ColumnListItem): void {
+  rebindTable(oTemplate: ColumnListItem): void {
     this.oTable.bindItems({
       path: "/Submissions",
       template: oTemplate,
@@ -51,75 +51,69 @@ export default class TablePanel extends Controller {
 
   onEdit(): void {
     this.byId("addButton").setVisible(false);
+    this.byId("submitButton").setVisible(false);
     this.byId("editButton").setVisible(false);
     this.byId("saveButton").setVisible(true);
-
     this.rebindTable(this.oEditableTemplate);
   }
 
   onSave(): void {
     this.byId("addButton").setVisible(true);
+    this.byId("submitButton").setVisible(true);
     this.byId("editButton").setVisible(true);
     this.byId("saveButton").setVisible(false);
-    
     this.rebindTable(this.oReadOnlyTemplate);
   }
 
   async onAdd(): Promise<void> {
-    this.dialog ??= await this.loadFragment({
-      name: "ui5.first.view.AddWBS"
+    this.oAddDialog ??= await this.loadFragment({
+      name: "ui5.first.view.fragment.AddWBS"
     }) as Dialog;
-    this.dialog.open(); 
+    this.oAddDialog.open();
   }
 
-  onCancelDialog(): void {
+  onCancelWBSDialog(): void {
     this.byId("wbsComboBox").clearSelection();
     (this.byId("idAddDialog") as Dialog)?.close();
   }
 
-  onSubmitDialog(): void {
+  onSubmitWBSDialog(): void {
     var oComboBox = this.byId("wbsComboBox");
     var oModel = this.getView().getModel();
     
     var sWBS = oComboBox.getSelectedKey();
     if (!sWBS) {
-      var sWBS = oComboBox.getValue();
-
+      sWBS = oComboBox.getValue();
       if (!sWBS) {
-          MessageToast.show("Please enter a WBS code.");
-          return;
+        MessageToast.show("Please enter a WBS code.");
+        return;
       }
     }
-    console.log(sWBS);
 
     var aSubmissions = oModel.getProperty("/Submissions");
 
-    // Check if this WBS is already in the table
     var bAlreadyAdded = aSubmissions.some((entry) => entry.WBS === sWBS);
     if (bAlreadyAdded) {
-        MessageToast.show("This WBS is already in the table.");
-        return;
+      MessageToast.show("This WBS is already in the table.");
+      return;
     }
-    
 
-    // If it's a new WBS not in Projects list, add it there too
     var aProjects = oModel.getProperty("/Projects");
     var bExists = aProjects.some((project) => project.WBS === sWBS);
     if (!bExists) {
-        aProjects.push({ WBS: sWBS, Description: sWBS });
-        oModel.setProperty("/Projects", aProjects);
+      aProjects.push({ WBS: sWBS, Description: sWBS });
+      oModel.setProperty("/Projects", aProjects);
     }
 
     aSubmissions.push({
-        WBS: sWBS,
-        day1: 0, day2: 0, day3: 0, day4: 0, day5: 0,
-        day6: 0, day7: 0, day8: 0, day9: 0, day10: 0,
-        day11: 0, day12: 0, day13: 0, day14: 0, day15: 0
+      WBS: sWBS,
+      day1: 0, day2: 0, day3: 0, day4: 0, day5: 0,
+      day6: 0, day7: 0, day8: 0, day9: 0, day10: 0,
+      day11: 0, day12: 0, day13: 0, day14: 0, day15: 0
     });
 
-    oModel.setProperty("/Submissions", aSubmissions); 
-
-    this.byId("wbsComboBox").clearSelection();
+    oModel.setProperty("/Submissions", aSubmissions);
+    oComboBox.clearSelection();
     (this.byId("idAddDialog") as Dialog)?.close();
   }
 
@@ -128,24 +122,31 @@ export default class TablePanel extends Controller {
     var aSubmissions = oModel.getProperty("/Submissions");
 
     var iTotalHours = 0;
-    console.log(aSubmissions);
     aSubmissions.forEach((entry) => {
-        for (var i = 1; i <= 15; i++) {
-            iTotalHours += Number(entry["day" + i]) || 0;
-        }
+      for (var i = 1; i <= 15; i++) {
+        iTotalHours += Number(entry["day" + i]) || 0;
+      }
     });
 
-    this.dialog ??= await this.loadFragment({
-      name: "ui5.first.view.Submit"
+    this.oSubmitDialog ??= await this.loadFragment({
+      name: "ui5.first.view.fragment.Submit"
     }) as Dialog;
-    this.dialog.open(); 
 
+    // reset values every time before opening
     this.byId("totalHoursTitle").setText(iTotalHours + "h/88h");
-   
-    this.byId("idOTSubmit").setVisible(true);
-    this.byId("totalHoursTitleOT").setVisible(true);
-    this.byId("totalHoursTitleOT").setText( (iTotalHours - 88) + "h OT");
+    this.byId("idOTSubmit").setVisible(false);
+    this.byId("totalHoursTitleOT").setVisible(false);
 
+    if (iTotalHours > 88) {
+      this.byId("idOTSubmit").setVisible(true);
+      this.byId("totalHoursTitleOT").setVisible(true);
+      this.byId("totalHoursTitleOT").setText((iTotalHours - 88) + "h OT");
+    }
+
+    this.oSubmitDialog.open();
   }
-  
+
+  onCancelSubmitDialog(): void {
+    (this.byId("idSubmitDialog") as Dialog)?.close();
+  }
 }
